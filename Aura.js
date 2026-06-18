@@ -1,90 +1,94 @@
-// Select all Buy buttons
-const buyButtons = document.querySelectorAll('.buy-btn');
+<!DOCTYPE html>
+<html lang="en">
 
-// Cart array (load from localStorage if exists)
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Perfume Store</title>
+    <link rel="stylesheet" href="auraStyel.css">
+</head>
 
-// Elements
-const cartItemsList = document.getElementById('cart-items');
-const cartTotal = document.getElementById('cart-total');
-const checkoutBtn = document.getElementById('checkout-btn');
+<body>
+    <!-- Header -->
+    <header>
+        <img src="Aura  photos/531e7cb4-fdb5-47fb-bb6a-7df5543d5660.jfif" alt="Aura Logo" class="logo">
+        <h1>Aura Perfumes</h1>
+    </header>
 
-// Function to update cart display
-function updateCart() {
-    cartItemsList.innerHTML = '';
-    let total = 0;
+    <!-- Products -->
+    <main>
+        <div class="product">
+            <img src="Aura  photos/1256c622-abd0-4840-a4b5-f1cc7906b4d0.jfif" alt="Perfume 1">
+            <h3>mint blank</h3>
+            <p>EGP 850</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+        <div class="product">
+            <img src="Aura  photos/1ecdc930-27c5-4c6e-a977-1cf86443f8af.jfif" alt="Perfume 2">
+            <h3>valentino</h3>
+            <p>EGP 900</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+        <div class="product">
+            <img src="Aura  photos/6103ff7d-fdea-4a66-9fab-a05261e6dcd3.jfif" alt="Perfume 3">
+            <h3>azzaro</h3>
+            <p>EGP 950</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+        <div class="product">
+            <img src="Aura  photos/8cfedb2d-2771-44e6-973f-8ccd39861e61.jfif" alt="Perfume 4">
+            <h3>acqua di gio</h3>
+            <p>EGP 880</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+        <div class="product">
+            <img src="Aura  photos/b8c7a7d4-8dd2-4c3a-8b1d-58eca271249d.jfif" alt="Perfume 5">
+            <h3>saheb</h3>
+            <p>EGP 1000</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+        <div class="product">
+            <img src="Aura  photos/e32ae054-bc83-4ef6-8507-7ea20edc70d0.jfif" alt="Perfume 6">
+            <h3>ghazi</h3>
+            <p>EGP 920</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+        <div class="product">
+            <img src="Aura  photos/e8f239c3-b29c-4f60-ac3d-f21238f1d2d6.jfif" alt="Perfume 7">
+            <h3>stronger with you</h3>
+            <p>EGP 1100</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+        <div class="product">
+            <img src="Aura  photos/ea3de144-43a6-46c0-a256-a8dff1632070.jfif" alt="Perfume 8">
+            <h3>dior homme intense</h3>
+            <p>EGP 1150</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+        <div class="product">
+            <img src="Aura  photos/ed1d2e87-eec7-4ea7-9828-1410b8798764.jfif" alt="Perfume 9">
+            <h3>
+                stronger with you
+                sand wood
+            </h3>
+            <p>EGP 1200</p>
+            <button class="buy-btn">Buy</button>
+        </div>
+    </main>
 
-    cart.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.name} - ${item.price}`;
-        cartItemsList.appendChild(li);
+    <!-- Cart Section -->
+    <aside id="cart">
+        <h2>🛒 Cart</h2>
+        <ul id="cart-items"></ul>
+        <p id="cart-total">Total: EGP 0</p>
+        <button id="checkout-btn">Checkout</button>
+    </aside>
 
-        // Extract numeric value from price
-        const priceValue = parseInt(item.price.replace(/\D/g, ''));
-        total += priceValue;
-    });
+    <!-- Footer -->
+    <footer>
+        All rights reserved © Aura Perfumes 2026
+    </footer>
 
-    cartTotal.textContent = `Total: EGP ${total}`;
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
+    <script src="Aura.js"></script>
+</body>
 
-// Function to show toast notification
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.textContent = message;
-    toast.style.position = 'fixed';
-    toast.style.bottom = '20px';
-    toast.style.right = '20px';
-    toast.style.background = '#000';
-    toast.style.color = '#fff';
-    toast.style.padding = '10px 20px';
-    toast.style.borderRadius = '5px';
-    toast.style.opacity = '0';
-    toast.style.transition = 'opacity 0.5s';
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => toast.style.opacity = '1', 100);
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 500);
-    }, 2000);
-}
-
-// Add event listeners to Buy buttons
-buyButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const productCard = button.parentElement;
-        const productName = productCard.querySelector('h3').textContent;
-        const productPrice = productCard.querySelector('p').textContent;
-
-        // Add product to cart
-        cart.push({ name: productName, price: productPrice });
-
-        // Update cart display
-        updateCart();
-
-        // Animate button
-        button.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            button.style.transform = 'scale(1)';
-        }, 200);
-
-        // Show toast
-        showToast(`${productName} added to cart!`);
-    });
-});
-
-// Checkout button functionality
-checkoutBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-        showToast("Your cart is empty!");
-    } else {
-        showToast("Thank you for your purchase! 🎉");
-        cart = [];
-        updateCart();
-    }
-});
-
-// Initialize cart on page load
-updateCart();
+</html>
