@@ -1,0 +1,159 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1B3022;
+    /* 60% main color */
+    color: #000;
+}
+
+/* Header */
+header {
+    background-color: #E8DCC4;
+    /* 30% secondary color */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+header .logo {
+    width: 80px;
+    border-radius: 10px;
+}
+
+header h1 {
+    margin: 10px 0 0;
+    font-size: 28px;
+    color: #000;
+}
+
+/* Products grid */
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 30px;
+}
+
+.product {
+    background-color: #E8DCC4;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.product p {
+    font-size: 16px;
+    color: #000;
+}
+
+/* Buy button */
+.buy-btn {
+    background-color: #000;
+    /* 10% accent color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.buy-btn:hover {
+    background-color: #333;
+    transform: translateY(-3px);
+}
+
+/* Cart Section */
+#cart {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 250px;
+    background-color: #E8DCC4;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#cart h2 {
+    margin: 0 0 10px;
+    text-align: center;
+}
+
+#cart ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cart p {
+    font-weight: bold;
+    text-align: center;
+}
+
+#checkout-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+#checkout-btn:hover {
+    background-color: #333;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    background-color: #1B3022;
+    color: #E8DCC4;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* 📱 Responsive Design */
+
+/* Tablets (max-width: 992px) */
+@media (max-width: 992px) {
+    main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    #cart {
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+    }
+}
